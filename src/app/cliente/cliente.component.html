@@ -1,0 +1,43 @@
+<div class="container">
+  <p-card header="Lista de clientes" [style]="{'width': '25rem', 'margin-bottom': '2em'}">
+    <p>Aquí encontrará la información listada en el consumo de la APIREST!</p>
+    <button pButton pRipple type="button" label="Nuevo registro" routerLink="/form" class="p-button-raised"></button>
+  </p-card>
+
+  <div class="card" style="padding-bottom: 20px">
+    <p-table [value]="clientes" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+             currentPageReportTemplate="{first} a {last} de {totalRecords} registros" [rowsPerPageOptions]="[5,10,25,50]">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>ID</th>
+          <th>NOMBRE</th>
+          <th>APELLIDO</th>
+          <th>CORREO</th>
+          <th>FECHA</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-cliente>
+        <tr>
+          <td>{{cliente.id}}</td>
+          <td>{{cliente.nombre}}</td>
+          <td>{{cliente.apellido}}</td>
+          <td>{{cliente.email}}</td>
+          <td>{{cliente.createAt}}</td>
+          <td>
+            <button [routerLink]="['/form', cliente.id]" pButton pRipple type="button" label="Editar" class="p-button-raised p-button-primary"></button>
+            <button (click)="delete(cliente.id)" pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"></button>
+          </td>
+
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="paginatorleft">
+        <p-button routerLink="/form" type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+      </ng-template>
+      <ng-template pTemplate="paginatorright">
+        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+      </ng-template>
+    </p-table>
+  </div>
+
+</div>

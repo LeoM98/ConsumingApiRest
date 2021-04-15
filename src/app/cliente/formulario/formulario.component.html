@@ -1,0 +1,36 @@
+<div class="container py-5 ">
+
+  <p-card header="Formulario" [style]="{'margin-left':'30%','width': '28rem', 'margin-bottom': '2em'}">
+    <div class="row">
+      <div class="col-md-10 mx-auto">
+
+        <form [formGroup]="formCliente">
+          <div class="form-group row">
+            <div class="col-sm-6">
+              <label>Nombre</label>
+              <input [(ngModel)]="cliente.nombre" formControlName="nombre" type="text" class="form-control" name = "nombre" placeholder="Ingrese el nombre">
+            </div>
+
+            <div class="col-sm-6">
+              <label>Apellido</label>
+              <input [(ngModel)]="cliente.apellido" formControlName="apellido" type="text" class="form-control" name="apellido" placeholder="Ingresar apellido">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-12">
+              <label>Email</label>
+              <input [(ngModel)]="cliente.email" formControlName="email" type="email" class="form-control" name="email" placeholder="Ingresar email">
+            </div>
+          </div>
+          <button *ngIf="cliente.id==null else editar" (click)="saveCliente()" [disabled]="!formCliente.valid" style="margin-top: 5%" type="button" class="btn btn-success px-4 float-right">Guardar registro</button>
+          <ng-template #editar>
+            <button (click)="updateCliente()" [disabled]="!formCliente.valid" style="margin-top: 5%" type="button" class="btn btn-success px-4 float-right">Editar registro</button>
+          </ng-template>
+        </form>
+      </div>
+    </div>
+  </p-card>
+
+
+</div>
